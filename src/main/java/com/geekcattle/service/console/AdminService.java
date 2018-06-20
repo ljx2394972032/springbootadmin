@@ -22,11 +22,11 @@ public class AdminService {
     private AdminMapper adminMapper;
 
     public List<Admin> getPageList(Admin admin) {
-        PageHelper.offsetPage(admin.getOffset(), admin.getLimit(), CamelCaseUtil.toUnderlineName(admin.getSort())+" "+admin.getOrder());
+        PageHelper.offsetPage(admin.getOffset(), admin.getLimit(), CamelCaseUtil.toUnderlineName(admin.getSort()) + " " + admin.getOrder());
         return adminMapper.selectAll();
     }
 
-    public Integer getCount(Example example){
+    public Integer getCount(Example example) {
         return adminMapper.selectCountByExample(example);
     }
 
@@ -42,7 +42,7 @@ public class AdminService {
         adminMapper.deleteByPrimaryKey(id);
     }
 
-    public void insert(Admin admin){
+    public void insert(Admin admin) {
         adminMapper.insert(admin);
     }
 
@@ -54,10 +54,7 @@ public class AdminService {
         }
     }
 
-    public void updateExample(Admin admin, Example example){
+    public void updateExample(Admin admin, Example example) {
         adminMapper.updateByExampleSelective(admin, example);
     }
-
-
-
 }

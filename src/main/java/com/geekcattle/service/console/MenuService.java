@@ -29,25 +29,24 @@ public class MenuService {
         return menuMapper.selectAll();
     }
 
-    public List<Menu> getMenuAll(){
+    public List<Menu> getMenuAll() {
         PageHelper.orderBy("listorder asc, created_at desc");
         return menuMapper.selectAll();
     }
 
-    public List<Menu> getMenuList(Example example){
+    public List<Menu> getMenuList(Example example) {
         PageHelper.orderBy("listorder asc, created_at desc");
         return menuMapper.selectByExample(example);
     }
 
-    public List<Menu> selectByParentMenuList(String parentId){
+    public List<Menu> selectByParentMenuList(String parentId) {
         Example example = new Example(Menu.class);
         example.createCriteria().andCondition("parent_id = ", parentId);
         PageHelper.orderBy("listorder asc, created_at desc");
         return menuMapper.selectByExample(example);
     }
 
-
-    public Integer getCount(Example example){
+    public Integer getCount(Example example) {
         return menuMapper.selectCountByExample(example);
     }
 
@@ -59,7 +58,7 @@ public class MenuService {
         menuMapper.deleteByPrimaryKey(id);
     }
 
-    public void insert(Menu menu){
+    public void insert(Menu menu) {
         menuMapper.insert(menu);
     }
 
@@ -83,28 +82,28 @@ public class MenuService {
         return menuMapper.selectAll();
     }
 
-    public List<Menu> selectMenuByAdminId(String userId){
+    public List<Menu> selectMenuByAdminId(String userId) {
         return menuMapper.selectMenuByAdminId(userId);
     }
 
-    public List<Menu> selectAllMenu(){
+    public List<Menu> selectAllMenu() {
         return menuMapper.selectAllMenu();
     }
 
-    public List<Menu> selectMenuByRoleId(String roleId){
+    public List<Menu> selectMenuByRoleId(String roleId) {
         return menuMapper.selectMenuByRoleId(roleId);
     }
 
-    public void update(Menu menu, Example example ){
+    public void update(Menu menu, Example example) {
         menuMapper.updateByExampleSelective(menu, example);
     }
 
-    public List<Menu> getChildMenuList(ArrayList<Menu> menuLists ,String parentId){
+    public List<Menu> getChildMenuList(ArrayList<Menu> menuLists, String parentId) {
         Example example = new Example(Menu.class);
         example.createCriteria().andCondition("parent_id = ", parentId);
         PageHelper.orderBy("listorder asc, created_at desc");
         List<Menu> List = menuMapper.selectByExample(example);
-        for(Menu menu : List){
+        for (Menu menu : List) {
             menuLists.add(menu);
             /*if(menu.getChildNum() > 0){
 
